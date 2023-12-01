@@ -25,17 +25,32 @@ enum Day01 {
 
     static func getNumber(_ input: String, onlyNumerals: Bool = true) -> Int {
         let digits = onlyNumerals ? numeralDigits : allDigits
-        let matches = input.firstAndLastOccurence(of: digits.keys)!
+        let matches = firstAndLastOccurence(of: digits.keys, in: input)!
         return digits[matches.1]! + digits[matches.0]! * 10
     }
 
-    static func part1() {
-        let sampleValue = PuzzleInput.getLines(name: "day01_sample1")
+    static func firstAndLastOccurence(of substrings: some Collection<String>, in str: String) -> (String, String)? {
+        var f: (String?, String.Index) = (nil, str.endIndex)
+        var l: (String?, String.Index) = (nil , str.startIndex)
+        for s in substrings {
+            for r in str.ranges(of: s) {
+                if r.lowerBound < f.1 { f = (s, r.lowerBound) }
+                if r.lowerBound >= l.1 { l = (s, r.lowerBound) }
+            }
+        }
+        if let first = f.0, let last = l.0 {
+            return (first, last)
+        }
+        return nil
+    }
+
+    static func part1() async throws {
+        let sampleValue = try await readLines(from: "day01_sample1")
             .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: true) }
         print("01.1a Calibration value in sample:", sampleValue)
 
-        let puzzleValue = PuzzleInput.getLines(name: "day01_input")
+        let puzzleValue = try await readLines(from: "day01_input")
             .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: true) }
         print("01.1b Calibration value in puzzle:", puzzleValue)
@@ -44,13 +59,13 @@ enum Day01 {
         assert(54927 == puzzleValue)
     }
 
-    static func part2() {
-        let sampleValue = PuzzleInput.getLines(name: "day01_sample2")
+    static func part2() async throws {
+        let sampleValue = try await readLines(from: "day01_sample2")
             .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: false) }
         print("01.2a Calibration value in sample:", sampleValue)
 
-        let puzzleValue = PuzzleInput.getLines(name: "day01_input")
+        let puzzleValue = try await readLines(from: "day01_input")
             .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: false) }
         print("01.2b Calibration value in puzzle:", puzzleValue)
