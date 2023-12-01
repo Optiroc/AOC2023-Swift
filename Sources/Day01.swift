@@ -44,13 +44,13 @@ enum Day01 {
         return nil
     }
 
-    static func part1() async throws {
-        let sampleValue = try await readLines(from: "day01_sample1")
+    static func part1() throws {
+        let sampleValue = try readLines(from: "day01_sample1")
             .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: true) }
         print("01.1a Calibration value in sample:", sampleValue)
 
-        let puzzleValue = try await readLines(from: "day01_input")
+        let puzzleValue = try readLines(from: "day01_input")
             .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: true) }
         print("01.1b Calibration value in puzzle:", puzzleValue)
@@ -59,13 +59,13 @@ enum Day01 {
         assert(54927 == puzzleValue)
     }
 
-    static func part2() async throws {
-        let sampleValue = try await readLines(from: "day01_sample2")
+    static func part2() throws {
+        let sampleValue = try readLines(from: "day01_sample2")
             .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: false) }
         print("01.2a Calibration value in sample:", sampleValue)
 
-        let puzzleValue = try await readLines(from: "day01_input")
+        let puzzleValue = try readLines(from: "day01_input")
             .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: false) }
         print("01.2b Calibration value in puzzle:", puzzleValue)
