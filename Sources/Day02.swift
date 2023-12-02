@@ -1,5 +1,5 @@
 import Foundation
-import LineReader
+import FileUtils
 
 enum Day02 {
     struct Cubes {

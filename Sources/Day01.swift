@@ -1,4 +1,4 @@
-import LineReader
+import FileUtils
 
 enum Day01 {
     static let numeralDigits = [
