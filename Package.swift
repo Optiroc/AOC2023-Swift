@@ -12,6 +12,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.2.0"),
         .package(url: "https://github.com/apple/swift-collections", from: "1.0.5"),
         .package(url: "https://github.com/Optiroc/swift-fileutils", from: "0.1.0"),
+        .package(name: "swift-optitypes", path: "./Modules/swift-optitypes"),
     ],
     targets: [
         .executableTarget(
@@ -20,6 +21,7 @@ let package = Package(
                 .product(name: "Algorithms", package: "swift-algorithms"),
                 .product(name: "Collections", package: "swift-collections"),
                 .product(name: "FileUtils", package: "swift-fileutils"),
+                .product(name: "OptiTypes", package: "swift-optitypes"),
             ],
             path: "Sources",
             resources: [

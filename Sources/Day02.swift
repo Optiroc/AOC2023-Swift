@@ -1,4 +1,3 @@
-import Foundation
 import FileUtils
 
 enum Day02 {
@@ -54,14 +53,12 @@ enum Day02 {
 
     static func part1() throws {
         let sampleValue = try LineReader("day02_sample.txt", bundle: .module)
-            .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += id($1, max: Cubes(red: 12, green: 13, blue: 14)) }
-        print("01.1a Sum of possible game IDs in sample:", sampleValue)
+        print("02.1a Sum of possible game IDs in sample:", sampleValue)
 
         let puzzleValue = try LineReader("day02_input.txt", bundle: .module)
-            .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += id($1, max: Cubes(red: 12, green: 13, blue: 14)) }
-        print("01.1b Sum of possible game IDs in puzzle:", puzzleValue)
+        print("02.1b Sum of possible game IDs in puzzle:", puzzleValue)
 
         assert(8 == sampleValue)
         assert(2600 == puzzleValue)
@@ -69,14 +66,12 @@ enum Day02 {
 
     static func part2() throws {
         let sampleValue = try LineReader("day02_sample.txt", bundle: .module)
-            .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += power($1) }
-        print("01.2a Sum of game powers in sample:", sampleValue)
+        print("02.2a Sum of game powers in sample:", sampleValue)
 
         let puzzleValue = try LineReader("day02_input.txt", bundle: .module)
-            .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += power($1) }
-        print("01.2b Sum of game powers in puzzle:", puzzleValue)
+        print("02.2b Sum of game powers in puzzle:", puzzleValue)
 
         assert(2286 == sampleValue)
         assert(86036 == puzzleValue)

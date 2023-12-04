@@ -48,12 +48,10 @@ enum Day01 {
 
     static func part1() throws {
         let sampleValue = try LineReader("day01_sample1.txt", bundle: .module)
-            .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: true) }
         print("01.1a Calibration value in sample:", sampleValue)
 
         let puzzleValue = try LineReader("day01_input.txt", bundle: .module)
-            .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: true) }
         print("01.1b Calibration value in puzzle:", puzzleValue)
 
@@ -63,12 +61,10 @@ enum Day01 {
 
     static func part2() throws {
         let sampleValue = try LineReader("day01_sample2.txt", bundle: .module)
-            .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: false) }
         print("01.2a Calibration value in sample:", sampleValue)
 
         let puzzleValue = try LineReader("day01_input.txt", bundle: .module)
-            .filter { !$0.isEmpty }
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: false) }
         print("01.2b Calibration value in puzzle:", puzzleValue)
 
