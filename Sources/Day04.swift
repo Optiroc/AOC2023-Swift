@@ -1,6 +1,5 @@
 import Collections
 import FileUtils
-import Darwin
 
 enum Day04 {
     static func points(_ card: String) -> (Int, Int) {
