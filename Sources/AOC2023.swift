@@ -17,5 +17,7 @@ struct AOC2023 {
         try Day02.part2()
         try Day03.part1()
         try Day03.part2()
+        try Day04.part1()
+        try Day04.part2()
     }
 }

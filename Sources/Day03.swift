@@ -16,7 +16,7 @@ enum Day03 {
     static func sumGearRatios(_ input: Matrix<Character>) -> Int {
         let numbers = input.continuousMatricesSatisfying { $0.isNumber }
 
-        return input.continuousMatricesSatisfying({ $0 == "*" }, maxLength: 1)
+        return input.continuousMatricesSatisfying { $0 == "*" }
             .map {
                 $0.offset(edges: .one)
             }

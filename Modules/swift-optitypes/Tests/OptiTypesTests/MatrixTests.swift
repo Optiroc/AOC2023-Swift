@@ -32,41 +32,36 @@ final class MatrixTests: XCTestCase {
 
     func testIndex() throws {
         let m = try Matrix<Character>.from(sequence: Self.input)
-
-        XCTAssert(m[m.index(MatrixOffset(0, 0))] == "4")
-        XCTAssert(m[m.index(MatrixOffset(1, 0))] == "6")
-        XCTAssert(m[m.index(MatrixOffset(2, 2))] == "3")
-        XCTAssert(m[m.index(MatrixOffset(3, 2))] == "5")
+        XCTAssertEqual(m[m.index(MatrixOffset(0, 0))], "4")
+        XCTAssertEqual(m[m.index(MatrixOffset(1, 0))], "6")
+        XCTAssertEqual(m[m.index(MatrixOffset(2, 2))], "3")
+        XCTAssertEqual(m[m.index(MatrixOffset(3, 2))], "5")
     }
 
     func testIndexAdvancedBy() throws {
         let m = try Matrix<Character>.from(sequence: Self.input)
-
         let i0 = m.index(MatrixOffset(8, 2))
-        XCTAssert(m[i0] == "3")
-
         let i1 = i0.advanced(by: 1)
-        XCTAssert(m[i1] == "0")
-
         let i2 = i1.advanced(by: 1)
-        XCTAssert(m[i2] == "0")
-
         let i3 = i2.advanced(by: 1)
-        XCTAssert(m[i3] == ".")
+        XCTAssertEqual(m[i0], "3")
+        XCTAssertEqual(m[i1], "0")
+        XCTAssertEqual(m[i2], "0")
+        XCTAssertEqual(m[i3], ".")
     }
 
     func testMap() throws {
         let m = try Matrix<Character>.from(sequence: Self.input)
-        XCTAssert(m.map { $0 } == Self.input.flatMap { $0 })
+        XCTAssertEqual(m.map { $0 }, Self.input.flatMap { $0 })
     }
 
     func testSlice() throws {
         let m = try Matrix<Character>.from(sequence: Self.input)
         let s = m.slice(MatrixView(.init(2, 0), .init(2, 2)))
-        XCTAssert(s[s.index(.init(0, 0))] == "7")
-        XCTAssert(s[s.index(.init(1, 0))] == ".")
-        XCTAssert(s[s.index(.init(0, 1))] == ".")
-        XCTAssert(s[s.index(.init(1, 1))] == "*")
+        XCTAssertEqual(s[s.index(.init(0, 0))], "7")
+        XCTAssertEqual(s[s.index(.init(1, 0))], ".")
+        XCTAssertEqual(s[s.index(.init(0, 1))], ".")
+        XCTAssertEqual(s[s.index(.init(1, 1))], "*")
     }
 
     func testSliceAdvancedBy() throws {
@@ -74,19 +69,49 @@ final class MatrixTests: XCTestCase {
         let s = m.slice(MatrixView(.init(2, 0), .init(2, 2)))
 
         let i0 = s.index(.init(0, 0))
-        XCTAssert(m[i0] == "7")
+        XCTAssertEqual(m[i0], "7")
         let i1 = i0.advanced(by: 1)
-        XCTAssert(m[i1] == ".")
+        XCTAssertEqual(m[i1], ".")
         let i2 = i1.advanced(by: 1)
-        XCTAssert(m[i2] == ".")
+        XCTAssertEqual(m[i2], ".")
         let i3 = i2.advanced(by: 1)
-        XCTAssert(m[i3] == "*")
+        XCTAssertEqual(m[i3], "*")
     }
 
     func testSliceMap() throws {
         let m = try Matrix<Character>.from(sequence: Self.input)
         let s = m.slice(MatrixView(.init(2, 0), .init(2, 2)))
-        XCTAssert(s.map { $0 } == ["7", ".", ".", "*"])
+        XCTAssertEqual(s.map { $0 }, ["7", ".", ".", "*"])
+    }
+
+    func testColumns() throws {
+        let m = try Matrix<Character>.from(sequence: Self.input)
+
+        m.columns.forEach {
+            print($0.map { $0 })
+        }
+    }
+
+    func testContinuousViewsSatisfying() throws {
+        let m = try Matrix<Character>.from(sequence: Self.input)
+
+        let t1 = m.row(8).continuousViewsSatisfying { $0 == "." }
+        let e1: [MatrixView] = [
+            .init(.init(0, 0), .init(3, 1)),
+            .init(.init(4, 0), .init(1, 1)),
+            .init(.init(6, 0), .init(4, 1))
+        ]
+        XCTAssertEqual(e1, t1)
+
+        let t2 = m.slice(.init(.init(1, 1), .init(4, 3))).continuousViewsSatisfying { $0 == "." }
+        let e2: [MatrixView] = [
+            .init(.init(0, 0), .init(2, 1)),
+            .init(.init(3, 0), .init(1, 1)),
+            .init(.init(0, 1), .init(1, 1)),
+            .init(.init(3, 1), .init(1, 1)),
+            .init(.init(0, 2), .init(4, 1))
+        ]
+        XCTAssertEqual(e2, t2)
     }
 
     /*
