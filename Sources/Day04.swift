@@ -35,24 +35,22 @@ enum Day04 {
             .map { points($0) }
             .reduce(into: 0) { $0 += $1.1 }
         print("04.1a Sum of cards in sample:", sampleValue)
+        assert(13 == sampleValue)
 
         let puzzleValue = try LineReader("day04_input.txt", bundle: .module)
             .map { points($0) }
             .reduce(into: 0) { $0 += $1.1 }
         print("04.1b Sum of cards in puzzle:", puzzleValue)
-
-        assert(13 == sampleValue)
         assert(21821 == puzzleValue)
     }
 
     static func part2() throws {
         let sampleValue = count(cards: try LineReader("day04_sample.txt", bundle: .module))
         print("04.2a Total cards in sample:", sampleValue)
+        assert(30 == sampleValue)
 
         let puzzleValue = count(cards: try LineReader("day04_input.txt", bundle: .module))
         print("04.2b Total cards in puzzle:", puzzleValue)
-
-        assert(30 == sampleValue)
         assert(5539496 == puzzleValue)
     }
 }

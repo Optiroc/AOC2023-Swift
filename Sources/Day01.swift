@@ -50,12 +50,11 @@ enum Day01 {
         let sampleValue = try LineReader("day01_sample1.txt", bundle: .module)
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: true) }
         print("01.1a Calibration value in sample:", sampleValue)
+        assert(142 == sampleValue)
 
         let puzzleValue = try LineReader("day01_input.txt", bundle: .module)
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: true) }
         print("01.1b Calibration value in puzzle:", puzzleValue)
-
-        assert(142 == sampleValue)
         assert(54927 == puzzleValue)
     }
 
@@ -63,12 +62,11 @@ enum Day01 {
         let sampleValue = try LineReader("day01_sample2.txt", bundle: .module)
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: false) }
         print("01.2a Calibration value in sample:", sampleValue)
+        assert(281 == sampleValue)
 
         let puzzleValue = try LineReader("day01_input.txt", bundle: .module)
             .reduce(into: 0) { $0 += getNumber($1, onlyNumerals: false) }
         print("01.2b Calibration value in puzzle:", puzzleValue)
-
-        assert(281 == sampleValue)
         assert(54581 == puzzleValue)
     }
 }

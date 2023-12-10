@@ -35,22 +35,20 @@ enum Day03 {
     static func part1() throws {
         let sampleValue = sumParts(try Matrix<Character>.from(sequence: LineReader("day03_sample.txt", bundle: .module)))
         print("03.1a Sum of part IDs in sample:", sampleValue)
+        assert(4361 == sampleValue)
 
         let puzzleValue = sumParts(try Matrix<Character>.from(sequence: LineReader("day03_input.txt", bundle: .module)))
         print("03.1b Sum of part IDs in puzzle:", puzzleValue)
-
-        assert(4361 == sampleValue)
         assert(520135 == puzzleValue)
     }
 
     static func part2() throws {
         let sampleValue = sumGearRatios(try Matrix<Character>.from(sequence: LineReader("day03_sample.txt", bundle: .module)))
         print("03.2a Sum of gear ratios in sample:", sampleValue)
+        assert(467835 == sampleValue)
 
         let puzzleValue = sumGearRatios(try Matrix<Character>.from(sequence: LineReader("day03_input.txt", bundle: .module)))
         print("03.2b Sum of gear ratios in puzzle:", puzzleValue)
-
-        assert(467835 == sampleValue)
         assert(72514855 == puzzleValue)
     }
 }

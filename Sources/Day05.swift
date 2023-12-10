@@ -72,22 +72,20 @@ enum Day05 {
     static func part1() throws {
         let sampleValue = lowestMappingSeeds(parse(try LineReader("day05_sample.txt", bundle: .module)))
         print("05.1a Lowest location value in sample:", sampleValue)
+        assert(35 == sampleValue)
 
         let puzzleValue = lowestMappingSeeds(parse(try LineReader("day05_input.txt", bundle: .module)))
         print("05.1b Lowest location value in puzzle:", puzzleValue)
-
-        assert(35 == sampleValue)
         assert(88151870 == puzzleValue)
     }
 
     static func part2() throws {
         let sampleValue = lowestMappingRanges(parse(try LineReader("day05_sample.txt", bundle: .module)))
         print("05.2a Lowest location value in sample:", sampleValue)
+        assert(46 == sampleValue)
 
         let puzzleValue = lowestMappingRanges(parse(try LineReader("day05_input.txt", bundle: .module)))
         print("05.2b Lowest location value in puzzle:", puzzleValue)
-
-        assert(46 == sampleValue)
         assert(2008785 == puzzleValue)
     }
 }

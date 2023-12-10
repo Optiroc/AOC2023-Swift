@@ -55,12 +55,11 @@ enum Day02 {
         let sampleValue = try LineReader("day02_sample.txt", bundle: .module)
             .reduce(into: 0) { $0 += id($1, max: Cubes(red: 12, green: 13, blue: 14)) }
         print("02.1a Sum of possible game IDs in sample:", sampleValue)
+        assert(8 == sampleValue)
 
         let puzzleValue = try LineReader("day02_input.txt", bundle: .module)
             .reduce(into: 0) { $0 += id($1, max: Cubes(red: 12, green: 13, blue: 14)) }
         print("02.1b Sum of possible game IDs in puzzle:", puzzleValue)
-
-        assert(8 == sampleValue)
         assert(2600 == puzzleValue)
     }
 
@@ -68,12 +67,11 @@ enum Day02 {
         let sampleValue = try LineReader("day02_sample.txt", bundle: .module)
             .reduce(into: 0) { $0 += power($1) }
         print("02.2a Sum of game powers in sample:", sampleValue)
+        assert(2286 == sampleValue)
 
         let puzzleValue = try LineReader("day02_input.txt", bundle: .module)
             .reduce(into: 0) { $0 += power($1) }
         print("02.2b Sum of game powers in puzzle:", puzzleValue)
-
-        assert(2286 == sampleValue)
         assert(86036 == puzzleValue)
     }
 }
